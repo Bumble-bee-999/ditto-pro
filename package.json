@@ -1,0 +1,112 @@
+{
+  "name": "ditto-pro",
+  "productName": "Ditto Pro",
+  "version": "0.1.0",
+  "description": "Ditto Pro — a desktop video editor with a multi-track timeline, keyframes, transitions and FFmpeg export.",
+  "main": "src/main.js",
+  "author": "Bumble-bee-999",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node test/export-test.js && node test/analysis-test.js && node test/import-test.js && node test/captions-test.js && node test/sync-test.js && node test/security-test.js && node test/ramp-test.js && node test/stabilize-test.js && node test/mask-test.js && node test/tracker-test.js && node test/audio-test.js && node test/bgremove-test.js && node test/collab-test.js && node test/hwenc-test.js && node test/prproj-real-test.js && node test/grade-test.js && node test/scopes-test.js && node test/effects-test.js && node test/import2-test.js && node test/imgseq-test.js && node test/edl-test.js && node test/chapters-test.js && node test/frame-test.js && node test/blend-test.js && node test/volume-test.js && node test/collect-test.js && node test/roll-test.js",
+    "dist": "electron-builder --win nsis --x64",
+    "dist:dir": "electron-builder --win dir --x64",
+    "test:app": "sh test/run-smoke.sh",
+    "fetch-whisper": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/fetch-whisper.ps1",
+    "audit": "npm audit --omit=dev",
+    "fetch-models": "node scripts/fetch-models.js"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.11.2",
+    "ffmpeg-static": "^5.3.0",
+    "ffprobe-static": "^3.1.0",
+    "onnxruntime-node": "1.20.1"
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.dittopro.editor",
+    "productName": "Ditto Pro",
+    "copyright": "Copyright © Ditto Pro contributors",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "renderer/**/*",
+      "package.json",
+      "NOTICE",
+      "!**/*.map",
+      "!node_modules/onnxruntime-node/bin/napi-v3/linux/**",
+      "!node_modules/onnxruntime-node/bin/napi-v3/darwin/**",
+      "!node_modules/onnxruntime-node/bin/napi-v3/win32/arm64/**",
+      "!node_modules/onnxruntime-common/**/*.map"
+    ],
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**",
+      "node_modules/ffprobe-static/**",
+      "node_modules/onnxruntime-node/**"
+    ],
+    "fileAssociations": [
+      {
+        "ext": "dpro",
+        "name": "Ditto Pro Project",
+        "description": "Ditto Pro Project",
+        "role": "Editor"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Ditto-Pro-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Ditto Pro",
+      "deleteAppDataOnUninstall": false
+    },
+    "extraResources": [
+      {
+        "from": "whisper",
+        "to": "whisper",
+        "filter": [
+          "**/*",
+          "!README.txt"
+        ]
+      },
+      {
+        "from": "models",
+        "to": "models",
+        "filter": [
+          "*.onnx"
+        ]
+      }
+    ],
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bumble-bee-999/ditto-pro.git"
+  }
+}

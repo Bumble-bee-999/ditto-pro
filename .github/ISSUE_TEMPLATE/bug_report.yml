@@ -1,0 +1,15 @@
+name: Bug report
+description: Something doesn't work
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes: { label: Ditto Pro version (Help → About) }
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes: { label: What did you do, and what happened? }
+    validations: { required: true }
+  - type: textarea
+    id: media
+    attributes: { label: Media involved, description: Format / codec / resolution if relevant. }

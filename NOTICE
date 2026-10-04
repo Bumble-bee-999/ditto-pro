@@ -1,0 +1,31 @@
+Ditto Pro — third-party notices
+
+Ditto Pro's own code is MIT licensed (see LICENSE). It bundles or downloads the following components, each under its own licence.
+
+FFmpeg (ffmpeg-static / ffprobe-static)
+  Video and audio decoding, filtering and encoding. GPL / LGPL build; see https://ffmpeg.org/legal.html
+
+Electron / Chromium
+  Application shell. MIT and BSD-style licences; see https://www.electronjs.org/ and the licence files shipped with the installer.
+
+onnxruntime-node (ONNX Runtime) — MIT
+  Runs the background-removal models. Windows builds use DirectML (MIT) for graphics-card acceleration.
+  https://github.com/microsoft/onnxruntime
+
+U²-Net (models/u2netp.onnx) — Apache License 2.0
+  Qin, Zhang, Huang, Dehghan, Zaiane, Jagersand. "U²-Net: Going Deeper with Nested U-Structure for Salient Object Detection", Pattern Recognition 2020.
+  https://github.com/xuebinqin/U-2-Net
+  ONNX conversion as published with the rembg project (MIT), https://github.com/danielgatis/rembg
+
+IS-Net, "general use" (models/isnet-general-use.onnx, optional, fetched by `npm run fetch-models`) — Apache License 2.0
+  Qin et al. "Highly Accurate Dichotomous Image Segmentation", ECCV 2022. https://github.com/xuebinqin/DIS
+  ONNX conversion as published with the rembg project (MIT).
+
+whisper.cpp and a ggml Whisper model (optional, fetched by `npm run fetch-whisper`) — MIT
+  https://github.com/ggml-org/whisper.cpp ; model weights by OpenAI, MIT.
+
+fast-xml-parser — MIT.
+
+Test pictures (test/fixtures/tiger.jpg, car.jpg) are example images from the rembg project (MIT); they are used only by the tests and are not part of the installer.
+
+Apache License 2.0: https://www.apache.org/licenses/LICENSE-2.0

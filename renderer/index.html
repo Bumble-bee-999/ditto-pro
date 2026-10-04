@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: dmedia:; media-src 'self' blob: dmedia:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ditto Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand"><span class="logo"></span><span>Ditto Pro</span></div>
+    <nav id="menus"></nav>
+    <div class="grow"></div>
+    <div id="projname" title="Click to rename"></div>
+    <div class="grow"></div>
+    <button id="btnExport" class="primary">Export</button>
+  </header>
+
+  <main id="workspace">
+    <section id="leftPanel" class="panel">
+      <div class="tabs" id="leftTabs">
+        <button data-tab="bin" class="active">Project</button>
+        <button data-tab="fx">Effects</button>
+        <button data-tab="tx">Transcript</button>
+        <button data-tab="rv">Review</button>
+        <button data-tab="co">Color</button>
+      </div>
+      <div id="tab-bin" class="tabbody"></div>
+      <div id="tab-fx" class="tabbody hidden"></div>
+      <div id="tab-tx" class="tabbody hidden"></div>
+      <div id="tab-rv" class="tabbody hidden"></div>
+      <div id="tab-co" class="tabbody hidden"></div>
+    </section>
+
+    <section id="monitorPanel" class="panel">
+      <div class="panelhead"><span>Program</span><span><select id="monQ" title="Preview resolution — lower it if playback stutters (export is always full quality)"><option value="1">Preview: Full</option><option value="0.5">Preview: ½</option><option value="0.25">Preview: ¼</option></select> <select id="monEngine" title="How the preview is drawn. Auto uses the graphics card (WebGL) and falls back to the canvas if it is unavailable. Export is not affected."><option value="auto">Compositor: Auto</option><option value="gpu">Compositor: GPU</option><option value="2d">Compositor: Canvas</option></select> <label class="chk" style="display:inline-flex;vertical-align:middle" title="Shows the action-safe (90%) and title-safe (80%) areas and the centre of the frame. Never exported."><input type="checkbox" id="monGuides"><span>Guides</span></label> <span id="monInfo" class="dim"></span></span></div>
+      <div id="monitorWrap">
+        <div id="canvasBox"><canvas id="monitor"></canvas><div id="selBox" class="hidden"></div><div id="guides" class="hidden"><i class="ga"></i><i class="gt"></i><i class="gh"></i><i class="gv"></i></div></div>
+      </div>
+      <div id="nestBar" class="hidden"></div>
+      <div id="mcGrid" class="hidden"></div>
+      <div id="mcBar" class="hidden"></div>
+      <div id="transport">
+        <div id="tcCur" class="tc">00:00:00:00</div>
+        <div class="tbuttons" id="tButtons"></div>
+        <div id="tcDur" class="tc dim">00:00:00:00</div>
+        <div id="vu" title="Output level (peak). The marks are −12 and −3 dB; red means the sound is clipping."><i></i><i></i></div>
+      </div>
+    </section>
+
+    <section id="rightPanel" class="panel">
+      <div class="panelhead"><span>Inspector</span><span id="inspTitle" class="dim"></span></div>
+      <div id="inspector"></div>
+    </section>
+  </main>
+
+  <div id="vsplit" title="Drag to resize"></div>
+
+  <section id="timelinePanel" class="panel">
+    <div id="tlToolbar"></div>
+    <div id="tlBody">
+      <div id="tlHeads"></div>
+      <div id="tlScroll">
+        <div id="tlContent">
+          <div id="ruler"></div>
+          <div id="tlTracks"></div>
+          <div id="playhead"><div class="ph-head"></div></div>
+          <div id="snapLine" class="hidden"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toasts"></div>
+  <div id="modalRoot"></div>
+  <div id="dropOverlay" class="hidden"><div>Drop media to import</div></div>
+</div>
+
+<script src="../src/shared.js"></script>
+<script src="../src/review.js"></script>
+<script src="../src/grade.js"></script>
+<script src="../src/scopes.js"></script>
+<script src="util.js"></script>
+<script src="state.js"></script>
+<script src="audiofx.js"></script>
+<script src="../src/creative.js"></script>
+<script src="gpu.js"></script>
+<script src="player.js"></script>
+<script src="timeline.js"></script>
+<script src="panels.js"></script>
+<script src="exportdlg.js"></script>
+<script src="ai.js"></script>
+<script src="transcript.js"></script>
+<script src="review.js"></script>
+<script src="color.js"></script>
+<script src="mcgrid.js"></script>
+<script src="tracker.js"></script>
+<script src="rack.js"></script>
+<script src="nest.js"></script>
+<script src="voice.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

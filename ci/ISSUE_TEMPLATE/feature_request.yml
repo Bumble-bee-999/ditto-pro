@@ -1,0 +1,17 @@
+# Copy the ISSUE_TEMPLATE folder to .github/ISSUE_TEMPLATE/
+name: Feature request
+description: Suggest something Ditto Pro should do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: What would you like to be able to do?, description: Describe the task, not just the feature name. }
+    validations: { required: true }
+  - type: textarea
+    id: how
+    attributes: { label: How do you do it today?, description: Another editor, a workaround, a manual process… }
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [Timeline, Effects / colour, Audio, Titles / captions, Import / export, Performance, Other]
