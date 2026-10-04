@@ -9,7 +9,7 @@
   "scripts": {
     "start": "electron .",
     "test": "node test/export-test.js && node test/analysis-test.js && node test/import-test.js && node test/captions-test.js && node test/sync-test.js && node test/security-test.js && node test/ramp-test.js && node test/stabilize-test.js && node test/mask-test.js && node test/tracker-test.js && node test/audio-test.js && node test/bgremove-test.js && node test/collab-test.js && node test/hwenc-test.js && node test/prproj-real-test.js && node test/grade-test.js && node test/scopes-test.js && node test/effects-test.js && node test/import2-test.js && node test/imgseq-test.js && node test/edl-test.js && node test/chapters-test.js && node test/frame-test.js && node test/blend-test.js && node test/volume-test.js && node test/collect-test.js && node test/roll-test.js",
-    "dist": "electron-builder --win nsis --x64",
+    "dist": "electron-builder --win nsis --x64 --publish never",
     "dist:dir": "electron-builder --win dir --x64",
     "test:app": "sh test/run-smoke.sh",
     "fetch-whisper": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/fetch-whisper.ps1",
