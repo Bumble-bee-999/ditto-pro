@@ -23,14 +23,22 @@ jobs:
         run: npm ci
 
       - name: Export-engine tests (real FFmpeg renders)
-        run: npm test
+        shell: pwsh
         continue-on-error: true
+        run: |
+          npm test 2>&1 | Tee-Object -FilePath test.log
+          $code = $LASTEXITCODE
+          if ($code -ne 0) { $t = ((Get-Content test.log -Tail 25) -join '%0A'); Write-Host "::error title=Tests failed::$t"; exit $code }
 
       - name: Fetch offline speech engine (captions)
         run: pwsh -File scripts/fetch-whisper.ps1
 
       - name: Build installer
-        run: npm run dist
+        shell: pwsh
+        run: |
+          npm run dist 2>&1 | Tee-Object -FilePath build.log
+          $code = $LASTEXITCODE
+          if ($code -ne 0) { $t = ((Get-Content build.log -Tail 40) -join '%0A'); Write-Host "::error title=Build failed::$t"; exit $code }
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
 
